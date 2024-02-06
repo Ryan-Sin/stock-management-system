@@ -28,10 +28,10 @@ class StockServiceTest {
         stockRepository.saveAndFlush(new Stock(1L, 100L));
     }
 
-//    @AfterEach
-//    public void afterEach() {
-//        stockRepository.deleteAll();
-//    }
+    @AfterEach
+    public void afterEach() {
+        stockRepository.deleteAll();
+    }
 
     @Test
     public void 재고감소() {
