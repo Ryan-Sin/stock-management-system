@@ -24,8 +24,8 @@ public class Stock {
     }
 
     public void decrease(Long quantity) {
-        if (this.quantity - quantity < 0)
-            throw new RuntimeException("재고는 0개 미만이 될 수 없습니다.");
+        if (this.quantity - quantity <= 0)
+            throw new RuntimeException("모든 재고가 소진 되었습니다.");
 
         this.quantity -= quantity;
     }
