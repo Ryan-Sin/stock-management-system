@@ -1,7 +1,7 @@
 package com.ryan.stock.facade;
 
 import com.ryan.stock.repository.LockRepository;
-import com.ryan.stock.service.StockService;
+import com.ryan.stock.service.NamedLockStockService;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -9,18 +9,18 @@ import org.springframework.transaction.annotation.Transactional;
 public class NamedLockStockFacade {
 
     private final LockRepository lockRepository;
-    private final StockService stockService;
+    private final NamedLockStockService namedLockStockService;
 
-    public NamedLockStockFacade(LockRepository lockRepository, StockService stockService) {
+    public NamedLockStockFacade(LockRepository lockRepository, NamedLockStockService namedLockStockService) {
         this.lockRepository = lockRepository;
-        this.stockService = stockService;
+        this.namedLockStockService = namedLockStockService;
     }
 
     @Transactional
     public void decrease(Long id, Long quantity) {
         try {
             lockRepository.getLock(id.toString());
-            stockService.decrease(id, quantity);
+            namedLockStockService.decrease(id, quantity);
         } finally {
             lockRepository.releaseLock(id.toString());
         }
