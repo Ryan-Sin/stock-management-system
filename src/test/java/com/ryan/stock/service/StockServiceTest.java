@@ -30,7 +30,7 @@ class StockServiceTest {
 
     @AfterEach
     public void afterEach() {
-        stockRepository.deleteAll();
+//        stockRepository.deleteAll();
     }
 
     @Test
