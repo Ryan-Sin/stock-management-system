@@ -1,6 +1,7 @@
 package com.ryan.stock.facade;
 
 import com.ryan.stock.service.OptimisticLockStockService;
+import org.springframework.dao.OptimisticLockingFailureException;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,8 +17,8 @@ public class OptimisticLockStockFacade {
             try {
                 optimisticLockStockService.decrease(id, quantity);
                 break;
-            } catch (Exception e) {
-                Thread.sleep(50);
+            } catch (OptimisticLockingFailureException e) {
+                Thread.sleep(100);
             }
         }
     }
