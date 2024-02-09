@@ -30,7 +30,7 @@ class OptimisticLockStockFacadeTest {
 
     @AfterEach
     public void afterEach() {
-//        stockRepository.deleteAll();
+        stockRepository.deleteAll();
     }
 
     @Test
