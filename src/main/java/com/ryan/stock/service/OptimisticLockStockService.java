@@ -17,6 +17,9 @@ public class OptimisticLockStockService {
     @Transactional
     public void decrease(Long id, Long quantity) {
         Stock stock = stockRepository.findByIdWithOptimisticLock(id);
+        if (stock.getQuantity() <= 0) {
+            throw new RuntimeException("모든 재고가 소진 되었습니다.");
+        }
         stock.decrease(quantity);
 
         stockRepository.save(stock);
